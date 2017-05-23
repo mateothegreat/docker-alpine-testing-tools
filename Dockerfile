@@ -1,4 +1,4 @@
-FROM alpine:3.6
+FROM alpine:3.5
 
 # Optional Configuration Parameter
 ARG SYSTEM_TZ
@@ -16,6 +16,6 @@ RUN \
   echo "${SYSTEM_TZ}" > /etc/TZ && \
   apk del tzdata
 
-ENTRYPOINT [ "/usr/bin/dumb-init", "curl" ]
+# ENTRYPOINT [ "/usr/bin/dumb-init", "curl" ]
 
-CMD [ "--help" ]
+# CMD [ "--help" ]
