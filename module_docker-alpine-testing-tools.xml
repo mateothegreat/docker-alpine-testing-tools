@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_docker-alpine-testing-tools" default="compile.module.docker-alpine-testing-tools">
+    <dirname property="module.docker-alpine-testing-tools.basedir"
+             file="${ant.file.module_docker-alpine-testing-tools}"/>
+
+
+    <property name="compiler.args.docker-alpine-testing-tools"
+              value="-encoding UTF-8 -source 9 -target 9 ${compiler.args}"/>
+
+    <property name="docker-alpine-testing-tools.output.dir"
+              value="${module.docker-alpine-testing-tools.basedir}/../out/production/docker-alpine-testing-tools"/>
+    <property name="docker-alpine-testing-tools.testoutput.dir"
+              value="${module.docker-alpine-testing-tools.basedir}/../out/test/docker-alpine-testing-tools"/>
+
+    <path id="docker-alpine-testing-tools.module.bootclasspath">
+        <!-- Paths to be included in compilation bootclasspath -->
+    </path>
+
+    <path id="docker-alpine-testing-tools.module.production.classpath"/>
+
+    <path id="docker-alpine-testing-tools.runtime.production.module.classpath">
+        <pathelement location="${docker-alpine-testing-tools.output.dir}"/>
+    </path>
+
+    <path id="docker-alpine-testing-tools.module.classpath">
+        <pathelement location="${docker-alpine-testing-tools.output.dir}"/>
+    </path>
+
+    <path id="docker-alpine-testing-tools.runtime.module.classpath">
+        <pathelement location="${docker-alpine-testing-tools.testoutput.dir}"/>
+        <pathelement location="${docker-alpine-testing-tools.output.dir}"/>
+    </path>
+
+
+    <patternset id="excluded.from.module.docker-alpine-testing-tools">
+        <patternset refid="ignored.files"/>
+    </patternset>
+
+    <patternset id="excluded.from.compilation.docker-alpine-testing-tools">
+        <patternset refid="excluded.from.module.docker-alpine-testing-tools"/>
+    </patternset>
+
+
+    <target name="compile.module.docker-alpine-testing-tools"
+            depends="compile.module.docker-alpine-testing-tools.production,compile.module.docker-alpine-testing-tools.tests"
+            description="Compile module docker-alpine-testing-tools"/>
+
+    <target name="compile.module.docker-alpine-testing-tools.production" depends="register.custom.compilers"
+            description="Compile module docker-alpine-testing-tools; production classes"/>
+
+    <target name="compile.module.docker-alpine-testing-tools.tests"
+            depends="register.custom.compilers,compile.module.docker-alpine-testing-tools.production"
+            description="compile module docker-alpine-testing-tools; test classes" unless="skip.tests"/>
+
+    <target name="clean.module.docker-alpine-testing-tools" description="cleanup module">
+        <delete dir="${docker-alpine-testing-tools.output.dir}"/>
+        <delete dir="${docker-alpine-testing-tools.testoutput.dir}"/>
+    </target>
+</project>
